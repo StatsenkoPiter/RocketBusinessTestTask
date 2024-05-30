@@ -1,0 +1,404 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap');
+@import 'vars', 'reset';
+
+// Миксины
+@mixin unihover {
+    @media (hover:hover) {  &:hover {@content} }
+    @media (hover:none) {  &:active {@content} }
+}
+@mixin ver-center {
+    margin-inline: auto;
+    max-width: $mainwidth;
+    display: flex;
+}
+@mixin mob-mode {
+    @media (max-width: $mobwidth) {@content};
+}
+
+// Стандартные классы
+body {
+    background-color: $bg-cl;
+    font-family: "PT Sans Caption", sans-serif;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+button {
+    height: $stheight;
+    width: 196px;
+    border-radius: $stheight;
+    line-height: 21px;
+    font-size: 14px;
+    cursor: pointer;
+    @include mob-mode {
+        width: 137px;
+    }
+}
+main {
+    flex: 1 0 auto;
+}
+nav {
+    background-color: $gray-cl;
+}
+footer {
+    background-color: $dark-cl;
+    flex: 0 0 auto;
+}
+//заголовок в посете
+h1 {
+    margin: 0;
+    font-size: 36px;
+    @include mob-mode {
+        font-size: 26px;
+    }
+}
+// заголовок в слайдере
+h2 {
+    margin: 0;
+    font-size: 38px; 
+    font-weight: 700;
+    line-height: 50px;
+    @include mob-mode {
+        font-size: 26px;
+    }
+}
+//цена в слайдере
+h3 {
+    margin: 1em 1em 1em 0;
+    font-size: 20px; 
+    line-height: 25px;
+    font-weight: 400;
+    @include mob-mode {
+        font-size: 18px;
+    }
+}
+// подзаголовок в слайдере
+h4 {
+    margin: 0;
+    font-size: 22px; 
+    font-weight: 700;
+    line-height: 28px;
+    @include mob-mode {
+        font-size: 14px;
+    }
+}
+
+// Шаблонные классы
+.dshidden {
+    @media (min-width: 376px) {
+        display: none;
+        }
+}
+.hc-cnt {
+    display: flex;
+    align-items: center;
+}
+.butd {
+    border: 0;
+    color: $bg-cl;
+    background-color: #0DBC91;
+    @include unihover {
+        background-color: #00D29F;
+    }
+}
+.butl {
+    border: 1px solid #0DBC91;
+    color: #0DBC91;
+    background-color: transparent;
+    margin-left: 1em;
+    @include unihover {
+        color: $bg-cl;
+        background-color: #0DBC91;
+    }
+}
+.mobm {
+    background-image: url(../images/menumob.png);    
+}
+.mobc {
+    background-image: url(../images/crosmob.png);    
+};
+
+
+.header {
+    height: 67px;
+    justify-content: space-between;
+    @include ver-center;
+    @include mob-mode {
+        height: 65px;
+        margin-inline: $mobmargin;
+    };
+//        &__logo {
+//            
+//        }
+        &__adr {
+            display: grid;
+            margin-left: 20px;
+            grid-template: 21px 21px / 21px 1fr;
+            line-height: 21px;
+            font-size: 14px;
+                &-geo {
+                grid-row-end: span 2;    
+                }
+                &-sity {
+                color: #364844;
+                }
+                &-street {
+                color: #868686;
+                }
+            @include mob-mode {display: none;};           
+        }
+        &__cont {
+           margin-right: 1.5em;
+            &-tel {
+                margin-left: 0.5em;
+                line-height: 24px;
+                font-size: 16px;
+            }
+            @include mob-mode {display: none;};
+        }
+        .butd {
+            @include mob-mode {display: none};  
+        }
+        &__logomob {
+            height: 30px;
+            width: 30px;
+            margin-right: 2em;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        &__contmob {
+            @include mob-mode {display: initial;};
+            text-align: right;
+            &-tel {
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 21px;
+            }
+            &-sity {
+                font-size: 13px;
+                line-height: 17px;
+            }
+        }
+}
+
+
+
+.navigation {
+    height: $stheight;
+    @include ver-center;
+    justify-content: start;
+    align-items: center;
+    list-style-type: none;
+    @include mob-mode {display: none;};
+        &__item{
+            color: $bg-cl;
+            font-size: 16px;
+            line-height: 24px;
+            margin-right: 20px;
+        }
+        &__link{
+            height: $stheight;
+            display: inline-flex;
+            align-items: center;
+        }
+}
+
+
+.poster {
+    max-height: 530px;
+    display: flex;
+    background-color: $light-cl1;
+    @include mob-mode {
+        flex-direction: column;
+    }
+    &__left {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        @include mob-mode {
+            width: 100%;
+            order: 2;
+        }
+        &-text {
+            padding-left: calc((100vw - $mainwidth)/2);
+            max-width: 24em;
+            @include mob-mode {
+                padding-inline: $mobmargin;
+                padding-top: 2em;
+                padding-bottom: 3em;
+            }
+        }
+            &-t1 {
+                font-size: 36px;
+                line-height: 46px;
+                font-weight: 700;
+                @include mob-mode {
+                    font-size: 26px;
+                    line-height: 34px;
+                }
+        }
+            &-t2 {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 24px;
+                @include mob-mode {
+                    font-size: 14px;
+                    line-height: 21px;
+                }
+            }
+    }
+    &__right {
+        width: 50%;
+        @include mob-mode {
+            width: 100%;
+        }
+        &-img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+
+.slider {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    flex-direction: column;
+    @include ver-center;
+    @include mob-mode {
+        margin-top: 3em;    
+        margin-bottom: 3em;
+        max-width: 90vw;
+    }
+    &__wrap {
+        display: flex;
+        overflow: hidden;
+        margin-inline: 0.5vw;
+        border-radius: 5px;
+    }
+    &__content {
+        display: flex;
+        position: relative;
+        transition: all 0.7s ease;
+            &-item {
+                display: flex;
+                align-content: center;
+                @include mob-mode {
+                    flex-direction: column;
+                }
+            }
+            &-info {
+                display: grid;
+                place-items: center;
+                @include mob-mode {
+                    order: 2;
+                    background-color: #E2F0EF;
+                };
+            }
+                &-tx {
+                    grid-area: 1/1;
+                    @include mob-mode {
+                        padding: 1.5em;
+                    }
+                }
+                &-tbg {
+                    grid-area: 1/1;
+                    @include mob-mode {
+                        display: none;
+                    }
+                }
+            &-pic {
+                z-index: -1;
+                margin-left: -11em;
+                display: flex;
+                @include mob-mode {
+                    height: 196px;
+                    z-index: 0;
+                    margin-left: 0;
+                };
+            }
+            &-pbg {
+                @include mob-mode {
+                    object-fit: cover;
+                    width: 100%;
+                };
+            }
+        &-oldprice {
+            text-decoration: line-through;
+            color: #868686; 
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+        }
+        &-list {
+        list-style-image: url(../images/listimg.png);
+        list-style-position: inside;
+        line-height: 26px;
+        }
+    }
+    &__controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2em;
+        &-pg {
+            padding-left: 2em;
+        }
+        &-tl {
+            color: #E1E1E1;
+            padding-right: 2em;
+        }
+        &-la {
+            :hover {fill: #0DBC91;}
+            :active {fill: #0DBC91;}
+        }
+        &-ra {
+            :hover {fill: #0DBC91;}
+            :active {fill: #0DBC91;}
+        }
+    }
+}
+
+
+.footer{
+    min-height: 144px;
+    @include ver-center;
+    justify-content: space-between;
+    align-items: center;
+    @include mob-mode {
+        min-height: 0;
+        margin: 2em;
+    }
+    &__menu {
+        display: flex;
+        justify-content: space-between;
+        column-gap: 40px;
+        list-style: none;
+        @include mob-mode {
+            display: none;
+
+        }
+        &-item {
+            font-size: 16px;
+            line-height: 24px;
+            color: $bg-cl;
+        }
+        &-link {
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+        }         
+    }
+    &__mobmenu {
+        display: flex;
+        flex-direction: column;
+    }
+    &__soc {
+        display: flex;
+        justify-content: space-between;
+        column-gap: 15px;
+    }
+
+}
