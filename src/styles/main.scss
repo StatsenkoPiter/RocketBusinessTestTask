@@ -87,8 +87,13 @@ h4 {
 // Шаблонные классы
 .dshidden {
     @media (min-width: 376px) {
-        display: none;
+        display: none !important;
         }
+}
+.mbhidden {
+    @media (max-width: $mobwidth) {
+        display: none !important;
+    }
 }
 .hc-cnt {
     display: flex;
@@ -127,10 +132,10 @@ h4 {
     @include mob-mode {
         height: 65px;
         margin-inline: $mobmargin;
-    };
-//        &__logo {
-//            
-//        }
+    }
+        &__logo {
+            cursor: pointer;
+        }
         &__adr {
             display: grid;
             margin-left: 20px;
@@ -140,13 +145,12 @@ h4 {
                 &-geo {
                 grid-row-end: span 2;    
                 }
-                &-sity {
+                &-city {
                 color: #364844;
                 }
                 &-street {
                 color: #868686;
-                }
-            @include mob-mode {display: none;};           
+                }         
         }
         &__cont {
            margin-right: 1.5em;
@@ -175,7 +179,7 @@ h4 {
                 font-weight: 700;
                 line-height: 21px;
             }
-            &-sity {
+            &-city {
                 font-size: 13px;
                 line-height: 17px;
             }
@@ -183,25 +187,45 @@ h4 {
 }
 
 
-
-.navigation {
-    height: $stheight;
-    @include ver-center;
-    justify-content: start;
-    align-items: center;
-    list-style-type: none;
-    @include mob-mode {display: none;};
-        &__item{
-            color: $bg-cl;
-            font-size: 16px;
-            line-height: 24px;
-            margin-right: 20px;
+nav {
+@include mob-mode {
+    height: calc(100vh - 65px);
+    width: 100vw;
+    z-index: 10;
+    padding-left: 10vw;
+    padding-top: 10vw;
+    background-color: rgba($color: $gray-cl, $alpha: 0.9);
+    position: absolute;
+}
+    .navigation {
+        height: $stheight;
+        @include ver-center;
+        justify-content: start;
+        align-items: center;
+        list-style-type: none;
+        @include mob-mode {
+            height:fit-content;
+            flex-direction: column;
+            align-items: start;
         }
-        &__link{
-            height: $stheight;
-            display: inline-flex;
-            align-items: center;
-        }
+            &__item{
+                color: $bg-cl;
+                font-size: 16px;
+                line-height: 24px;
+                margin-right: 20px;
+            }
+            &__link{
+                height: $stheight;
+                display: flex;
+                align-items: center;
+            }
+    }
+    .nav__btn {
+        width: 196px;
+        background-color: $bg-cl;
+        margin-left: 0;
+        margin-top: 2em;
+    }
 }
 
 
@@ -362,13 +386,14 @@ h4 {
 }
 
 
-.footer{
-    min-height: 144px;
+.footer {
+    height: 144px;
     @include ver-center;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     @include mob-mode {
-        min-height: 0;
+        height: auto;
         margin: 2em;
     }
     &__menu {
@@ -377,8 +402,9 @@ h4 {
         column-gap: 40px;
         list-style: none;
         @include mob-mode {
-            display: none;
-
+            margin-top: 1em;
+            order: 3;
+            flex-direction: column;
         }
         &-item {
             font-size: 16px;
@@ -391,14 +417,34 @@ h4 {
             align-items: center;
         }         
     }
-    &__mobmenu {
-        display: flex;
-        flex-direction: column;
-    }
     &__soc {
         display: flex;
         justify-content: space-between;
         column-gap: 15px;
     }
+}
 
+.mailDialog {
+    border-color: $dark-cl;
+    width: 50vw;
+    @include mob-mode {
+        width: 100vw;
+    }
+    &__wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    &__text {
+        width: 100%;
+        line-height: 1em;
+        height: 3em;
+        outline: none;
+        border: 1px solid #0DBC91;
+        resize: vertical;
+    }
+    &__controls {
+        margin-top: 1em;
+    }
 }
